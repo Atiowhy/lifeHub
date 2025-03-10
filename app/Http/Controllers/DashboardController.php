@@ -18,11 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         $dataAccount = $this->dataUser();
+
         return view('dashboard.index', compact('dataAccount'));
     }
 
     public function generalDash()
     {
+         $data = Account::get();
+    //    return $data;
         $dataAccount = $this->dataUser();
         return view('dashboard.general', compact('dataAccount'));
     }

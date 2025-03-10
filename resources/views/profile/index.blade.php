@@ -19,12 +19,12 @@
                     <div class="col-12 col-md-12 col-lg-5">
                         <div class="card profile-widget">
                             <div class="profile-widget-header">
-                                <img alt="image" src="{{ asset($dataAccount->photo ? 'images/' . $dataAccount->photo : 'https://placehold.co/150x150') }}"
+                                <img alt="image" src="{{ asset($dataAccount->photo ? $dataAccount->photo : 'https://placehold.co/150x150') }}"
                                     class="rounded-circle profile-widget-picture" style="width: 150px; height: 150px; object-fit: cover;">
                                 <div class="profile-widget-items">
                                     <div class="profile-widget-item">
                                         <div class="profile-widget-item-label">Posts</div>
-                                        <div class="profile-widget-item-value">187</div>
+                                        <div class="profile-widget-item-value">{{$dataCount}}</div>
                                     </div>
                                     <div class="profile-widget-item">
                                         <div class="profile-widget-item-label">Followers</div>

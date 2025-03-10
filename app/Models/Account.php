@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Account extends Authenticatable implements CanResetPassword
@@ -34,4 +35,9 @@ class Account extends Authenticatable implements CanResetPassword
     protected $hidden = [
         'password',
     ];
+
+        public function article(): HasMany
+    {
+        return $this->HasMany(Article::class, 'account_id', 'id');
+    }
 }

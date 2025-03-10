@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Account;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -15,8 +17,9 @@ class ProfileController extends Controller
     {
         $title = "My Profile";
         $idUser = session()->get('user_id');
-        $dataAccount = Account::findOrFail($idUser);
-        return view('profile.index', compact('title', 'dataAccount'));
+        $dataAccount = Account::with('article')->where('id', $idUser )->first();
+        $dataCount = $dataAccount->article->count();
+        return view('profile.index', compact('title', 'dataAccount', 'dataCount'));
     }
 
     /**
@@ -26,23 +29,23 @@ class ProfileController extends Controller
     {
         $idAccount = session()->get('user_id');
         $editAccount = Account::findOrFail($idAccount);
-
         if($request->hasFile('photo')){
+            $file = $request->file('photo');
             if($editAccount->photo){
-                $oldImagePath = public_path('images/' . $editAccount->photo);
-                if(file_exists($oldImagePath)){
-                    unlink($oldImagePath);
-                }
+                $uploadFile = Cloudinary::upload($file->getRealPath(), [
+                    'folder' => 'accounts',
+                    'public_id' => $idAccount,
+                ]);
+
+                if($uploadFile){
+                $photoUrl = $uploadFile->getSecurePath();
+                } else {
+                return back()->withErrors(['photo' => 'upload file : no file returned']);
+            }
             }
 
-            //upload gambar baru
-            $imageName = 'IMG' . time() . '.' .  $request->photo->extension();
-            $request->photo->move(public_path('images'), $imageName);
-
-            // save foto
-            $editAccount->photo = $imageName;
+            $editAccount->photo = $photoUrl;
         }
-
         $editAccount->first_name = $request->first_name;
         $editAccount->last_name = $request->last_name;
         $editAccount->title = $request->title;
@@ -51,8 +54,7 @@ class ProfileController extends Controller
         $editAccount->bio = $request->bio;
 
         $editAccount->save();
-
-        return redirect()->to('profile');
+        return redirect()->to('profile/profile');
     }
 
     /**

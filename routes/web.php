@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\ForgotPassController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +36,17 @@ Route::prefix('dashboard')->group(function() {
 Route::prefix('profile')->group(function() {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('update', [ProfileController::class,'update'])->name('update');
+});
+
+// Article Route
+Route::prefix('article')->group(function(){
+    Route::get('articles', [ArticlesController::class, 'index'])->name('articles');
+      Route::get('post-articles', [ArticlesController::class, 'insert'])->name('post-articles');
+      Route::post('store-articles', [ArticlesController::class, 'store'])->name('store-articles');
+});
+
+// Category Route
+Route::prefix('categori')->group(function(){
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories');
+    Route::post('add-category', [CategoryController::class, 'store'])->name('add-category');
 });

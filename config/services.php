@@ -9,10 +9,14 @@ return [
     |
     | This file is for storing the credentials for third party services such
     | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
+    // | location for this type of information, allowing packages to hav
     | a conventional file to locate the various service credentials.
     |
     */
+
+    'cloudinary' => [
+        'url' => env('CLOUDINARY_URL'),
+    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),

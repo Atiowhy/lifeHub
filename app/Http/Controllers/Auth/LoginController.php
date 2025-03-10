@@ -18,8 +18,6 @@ class LoginController extends Controller
 
     public function actionLogin(Request $request){
         // dd($request->all());
-
-
         $account = Account::where('email', $request->email)->first();
 
         if(!$account){
