@@ -345,7 +345,7 @@
 
                         <li class="menu-header">My Article</li>
                         <li class=active>
-                            <a class="nav-link" href="{{route('articles')}}">
+                            <a class="nav-link" href="{{route('your-article')}}">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span>Article Saya</span>
                             </a>

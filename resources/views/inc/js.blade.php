@@ -9,11 +9,15 @@
 <script src="{{asset('assets/dist/assets/modules/moment.min.js')}}"></script>
 <script src="{{asset('assets/dist/assets/js/stisla.js')}}"></script>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- JS Libraies -->
 <script src="{{asset('assets/dist/assets/modules/summernote/summernote-bs4.js')}}"></script>
 <script src="{{asset('assets/dist/assets/modules/jquery-selectric/jquery.selectric.min.js')}}"></script>
 <script src="{{asset('assets/dist/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
 <script src="{{asset('assets/dist/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+
 
 
 

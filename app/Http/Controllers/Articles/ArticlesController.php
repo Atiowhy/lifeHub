@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Articles;
 
 use App\Http\Controllers\Controller;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -37,8 +37,6 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
 {
-    // $uploadedFileUrl = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
-    // return response()->json(['url' => $uploadedFileUrl]);
     $request->validate([
         // 'photo' => 'required|image',
         'titile' => 'required|string|max:255',
@@ -83,8 +81,6 @@ class ArticlesController extends Controller
         "content" => $request->content,
         "photo" => $photoUrl,
     ]);
-
-    // dd($article);
 
     if ($article) {
         return back();

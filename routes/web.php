@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Articles\ArticlesController;
+use App\Http\Controllers\Articles\DashboardArticle;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\ForgotPassController;
@@ -41,8 +42,10 @@ Route::prefix('profile')->group(function() {
 // Article Route
 Route::prefix('article')->group(function(){
     Route::get('articles', [ArticlesController::class, 'index'])->name('articles');
-      Route::get('post-articles', [ArticlesController::class, 'insert'])->name('post-articles');
-      Route::post('store-articles', [ArticlesController::class, 'store'])->name('store-articles');
+    Route::get('post-articles', [ArticlesController::class, 'insert'])->name('post-articles');
+    Route::post('store-articles', [ArticlesController::class, 'store'])->name('store-articles');
+    // dashboard article
+    Route::get('your-article', [DashboardArticle::class, 'index'])->name('your-article');
 });
 
 // Category Route
